@@ -1,0 +1,11 @@
+---
+prefix: "§eBorderSystem §7> "
+
+form.title: "§e§lPlot Borders"
+
+no.perms: "You do not have the necessary rights for this order."
+no.border.perm: "You do not have the necessary rights for this border."
+not.the.owner: "You are not the owner of this plot."
+not.on.plot: "You're not in your plot."
+success: "Your plot border has been successfully modified."
+...

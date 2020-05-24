@@ -1,0 +1,10 @@
+---
+# Enter extra aliases here if you are not satisfied with the standard command
+aliases:
+  - "b"
+
+# All borders are listed here
+# Name:ID:DAMAGE:PERMISSION
+borders:
+  - "Stone:1:0:none"
+...
