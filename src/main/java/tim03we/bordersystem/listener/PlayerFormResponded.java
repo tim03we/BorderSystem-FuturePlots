@@ -24,6 +24,8 @@ import cn.nukkit.event.player.PlayerFormRespondedEvent;
 import cn.nukkit.form.window.FormWindowSimple;
 import tim03we.bordersystem.BorderSystem;
 import tim03we.bordersystem.Language;
+import tim03we.futureplots.FuturePlots;
+import tim03we.futureplots.provider.DataProvider;
 import tim03we.futureplots.utils.Plot;
 import tim03we.futureplots.utils.PlotPlayer;
 
@@ -39,13 +41,14 @@ public class PlayerFormResponded implements Listener {
             FormWindowSimple gui = (FormWindowSimple) event.getWindow();
             String responseName = gui.getResponse().getClickedButton().getText();
             if(Language.translate(false, "form.title").equals(gui.getTitle())) {
+                DataProvider provider = FuturePlots.provider;
                 PlotPlayer plotPlayer = new PlotPlayer(player);
                 Plot plot = plotPlayer.getPlot();
                 if (plot == null) {
                     player.sendMessage(Language.translate(true, "not.on.plot"));
                     return;
                 }
-                if (!plotPlayer.isOwner()) {
+                if (!provider.getOwner(plot).equals(player.getName())) {
                     player.sendMessage(Language.translate(true, "not.the.owner"));
                     return;
                 }

@@ -22,7 +22,9 @@ import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowSimple;
 import tim03we.bordersystem.BorderSystem;
 import tim03we.bordersystem.Language;
+import tim03we.futureplots.FuturePlots;
 import tim03we.futureplots.commands.BaseCommand;
+import tim03we.futureplots.provider.DataProvider;
 import tim03we.futureplots.utils.Plot;
 import tim03we.futureplots.utils.PlotPlayer;
 
@@ -36,13 +38,14 @@ public class BorderCommand extends BaseCommand {
     public void execute(CommandSender sender, String command, String[] args) {
         if(sender instanceof Player) {
             if(sender.hasPermission("futureplots.command.border")) {
+                DataProvider provider = FuturePlots.provider;
                 PlotPlayer plotPlayer = new PlotPlayer((Player) sender);
                 Plot plot = plotPlayer.getPlot();
                 if (plot == null) {
                     sender.sendMessage(Language.translate(true, "not.on.plot"));
                     return;
                 }
-                if (!plotPlayer.isOwner()) {
+                if (!provider.getOwner(plot).equals(sender.getName())) {
                     sender.sendMessage(Language.translate(true, "not.the.owner"));
                     return;
                 }
